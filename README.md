@@ -1,6 +1,7 @@
 # my-project
 <<<<<<< HEAD
 mpvue support project
+<<<<<<< HEAD
 =======
 
 >  A mpvue project
@@ -39,3 +40,6 @@ npm run build --report
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 >>>>>>> myProject
+=======
+美容预约平台
+>>>>>>> 8184a80dc222d832b1d8739baef31c73a3d25b39
