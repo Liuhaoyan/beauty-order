@@ -18,40 +18,49 @@
       </div>
     </div>
 
-    <div>1234</div>
+    <div class="tab-content">
+      <ul class="nav">
+        <li v-for="(item, index) in navList" :key="index" @click="menuShow(index)"><img :src="item.image" /><a v-text="item.name" :class="{active:!(index - menuIndex)}"></a></li>
+      </ul>
+      <div class="detail-content clearfix">
+        <div v-for="(item, index) in contentList[menuIndex]" :key="index">
+          <detail-content :list="item"></detail-content>
+        </div>
+      </div>
+    </div>
 
-    <div class="userinfo" @click="bindViewTap">
+    <!-- <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <img class="userinfo-avatar" src="/static/images/user.png" background-size="cover" />
 
       <div class="userinfo-nickname">
         <card :text="userInfo.nickName"></card>
       </div>
-    </div>
+    </div> -->
 
-    <div class="usermotto">
+    <!-- <div class="usermotto">
       <div class="user-motto">
         <card :text="motto"></card>
       </div>
-    </div>
+    </div> -->
 
-    <form class="form-container">
+    <!-- <form class="form-container">
       <input type="text" class="form-control" :value="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
+    </form> -->
 
     <!-- 使用 click-counter 组件 -->
-    <click-counter />
+    <!-- <click-counter /> -->
 
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
+    <!-- <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a> -->
 
-    <div class="all">
+    <!-- <div class="all">
         <div class="left">
         </div>
         <div class="right">
         </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -59,6 +68,7 @@
 import card from '@/components/card'
 // 导入组件
 import ClickCounter from '@/components/click-counter'
+import detailContent from '@/components/detail-content'
 
 export default {
   data () {
@@ -69,13 +79,109 @@ export default {
         avatarUrl: 'http://mpvue.com/assets/logo.png'
       },
       mark: 0,
-      bannerList: ['/static/images/beautiful-1.jpeg', '/static/images/beautiful-2.jpeg', '/static/images/beautiful.jpeg', '/static/images/cleaner-1.jpeg']
+      bannerList: ['/static/images/beautiful-1.jpeg', '/static/images/beautiful-2.jpeg', '/static/images/beautiful.jpeg', '/static/images/cleaner-1.jpeg'],
+      menuIndex: 0,
+      navList: [
+        {
+          name: '推荐',
+          image: '/static/images/番剧推荐.png'
+        },
+        {
+          name: '美容',
+          image: '/static/images/美容仪.png'
+        },
+        {
+          name: '美甲',
+          image: '/static/images/美甲.png'
+        },
+        {
+          name: '美发',
+          image: '/static/images/美发素.png'
+        },
+        {
+          name: '美睫',
+          image: '/static/images/美睫.png'
+        }
+      ],
+      contentList: {
+        0: [
+          {
+            avatar: '/static/images/beautiful-1.jpeg',
+            title: '秋季自然特价美甲',
+            price: '198',
+            desc: '我们追求的是没有最长只有更长！'
+          },
+          {
+            avatar: '/static/images/beautiful-2.jpeg',
+            title: '睫毛稀疏中睫毛来帮忙',
+            price: '1888',
+            desc: '我们追求的是没有最长只有更长！'
+          },
+          {
+            avatar: '/static/images/beautiful-1.jpeg',
+            title: '爱丽克EricParisSalon',
+            price: '1588',
+            desc: '我们追求的是没有最长只有更长！'
+          },
+          {
+            avatar: '/static/images/beautiful-1.jpeg',
+            title: '伊本造型',
+            price: '198',
+            desc: '伊本造型是由著名形象设计师杨昊明主导的时尚沙龙'
+          },
+          {
+            avatar: '/static/images/beautiful.jpeg',
+            title: '画对了妆，微微一笑颜值倍增',
+            price: '198',
+            desc: '《微微一笑很倾城》的剧照简直简直简直简直简直'
+          }
+        ],
+        1: [
+          {
+            avatar: '/static/images/beautiful-1.jpeg',
+            title: '爱丽克EricParisSalon',
+            price: '1588',
+            desc: '我们追求的是没有最长只有更长！'
+          },
+          {
+            avatar: '/static/images/beautiful.jpeg',
+            title: '画对了妆，微微一笑颜值倍增',
+            price: '198',
+            desc: '《微微一笑很倾城》的剧照简直简直简直简直简直'
+          }
+        ],
+        2: [
+          {
+            avatar: '/static/images/beautiful-1.jpeg',
+            title: '秋季自然特价美甲',
+            price: '198',
+            desc: '我们追求的是没有最长只有更长！'
+          }
+        ],
+        3: [
+          {
+            avatar: '/static/images/beautiful-1.jpeg',
+            title: '伊本造型',
+            price: '198',
+            desc: '伊本造型是由著名形象设计师杨昊明主导的时尚沙龙'
+          }
+        ],
+        4: [
+          {
+            avatar: '/static/images/beautiful-2.jpeg',
+            title: '睫毛稀疏中睫毛来帮忙',
+            price: '1888',
+            desc: '我们追求的是没有最长只有更长！'
+          }
+        ]
+      }
     }
   },
 
   components: {
     card,
-    ClickCounter
+    ClickCounter,
+    detailContent
   },
 
   methods: {
@@ -94,7 +200,6 @@ export default {
     // 自动轮播
     autoPlay () {
       this.mark++
-      console.log(this.mark, 'mark的')
       if (this.mark === 3) {
         this.mark = 0
       }
@@ -104,6 +209,10 @@ export default {
     },
     change (i) {
       this.mark = i
+    },
+    menuShow (i) {
+      this.menuIndex = i
+      console.log(this.menuIndex, '234')
     }
   },
 
@@ -182,7 +291,7 @@ export default {
   width: 100%;
   height: 150px;
 }
-li {
+.slideShow ul li {
   position: absolute;
 }
 .slideShow img {
@@ -206,7 +315,7 @@ li {
   display: inline-block;
   margin-right: 10px;
 }
-.active {
+.bar span.active {
   background-color: #bfd6b6 !important;
 }
 /* 动画效果 */
@@ -223,5 +332,42 @@ li {
 }
 .image-leave {
   transform: translateX(0);
+}
+/* nav */
+.tab-content {
+  margin-top: 15px;
+}
+.tab-content, .tab-content ul {
+  width: 100%;
+  height: 30px;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.tab-content ul li {
+  float: left;
+  width: 20%;
+  height: 50px;
+  text-align: center;
+  font-size: 14px;
+}
+.tab-content ul li img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+.tab-content ul li a {
+  color: #ccc;
+}
+.tab-content ul li a.active {
+  color: #323333;
+}
+.detail-content {
+  margin-top: 30px;
 }
 </style>

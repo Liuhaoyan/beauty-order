@@ -2,7 +2,10 @@
   "pages": [
     "pages/index/main",
     "pages/logs/main",
-    "pages/counter/main"
+    "pages/counter/main",
+    "pages/detail/main",
+    "pages/skill/main",
+    "pages/my/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,8 +25,13 @@
       "iconPath": "static/tabs/home.png",
       "selectedIconPath": "static/tabs/home-active.png"
     }, {
-      "text": "订单",
-      "pagePath": "pages/logs/main",
+      "text": "技师",
+      "pagePath": "pages/skill/main",
+      "iconPath": "static/tabs/skiller.png",
+      "selectedIconPath": "static/tabs/skiller-active.png"
+    }, {
+      "text": "我的",
+      "pagePath": "pages/my/main",
       "iconPath": "static/tabs/orders.png",
       "selectedIconPath": "static/tabs/orders-active.png"
     }],
